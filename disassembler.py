@@ -12,7 +12,40 @@ def main():
 	bin_bit(binary)
 	bin_endian(binary)
 	os_detect(binary)
-	
+	e_type(binary)
+	e_machine(binary)
+
+#TODO locate the section header and find .data 
+
+def e_machine(binary):
+	values = {
+	"0x0": "None Specificed",
+	"0x2": "SPARC",
+	"0x3": "x86",
+	"0x8": "MIPS",
+	"0x14": "PowerPC",
+	"0x16": "S390",
+	"0x28": "ARM",
+	"0x2a": "SuperH",
+	"0x32": "IA-64",
+	"0x3e": "amd64",
+	"0xb7": "AArch64",
+	"0xf3": "RISC-V"
+	}
+	print(values.get(binary[25]))
+
+
+def e_type(binary):
+	values = {
+	"0x0": "NULL",
+	"0x1": "ET_REL: Relocatable File",
+	"0x2": "ET_EXEC Executable File",
+	"0x3": "ET_DYN Shared Object File",
+	"0x4": "ET_CORE Core file",
+	"0xff": "ET_LOPROC Processor-Specific",
+	"0xffff": "ET_HIPROC Processor-Specific"
+	}
+	print(values.get(binary[20]))
 
 def os_detect(binary):
 	values ={
