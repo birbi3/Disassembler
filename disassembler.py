@@ -16,12 +16,10 @@ def main(argv):
 	binary = binary_string.split(" ")
 	
 	arch = bin_bit(binary)
-	sh_offset = e_shoff(binary, arch)
-	sh_size = e_shnum(binary, arch)
-
-
-	print(sh_offset)
-	print(sh_size)
+	ph_offset = e_phoff(binary,arch)
+	ph_size = e_phentsize(binary,arch)
+	program_header = get_full_program_header(ph_offset, arch, binary)
+	print(program_header)
 
 if __name__ == '__main__':
 	main(sys.argv[1])
