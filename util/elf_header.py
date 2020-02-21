@@ -78,7 +78,16 @@ def e_shoff(binary, arch):
 		section_header.append(binary[46])
 		section_header.append(binary[47])
 		section_header.append(binary[48])
-	return(section_header)
+
+	offset = "0x"
+	for _row in section_header:
+		print(type(_row))
+	for _row in section_header:
+		_por = _row.split("x")[1]
+		if _por == "0":
+			continue
+		offset = offset + _por
+	return(offset)
 
 def e_phoff(binary, arch):
 	program_header = list()
