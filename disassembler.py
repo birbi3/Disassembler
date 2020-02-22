@@ -18,8 +18,10 @@ def main(argv):
 	
 	print(len(binary))
 	arch = bin_bit(binary)
-	section_offset = e_shoff(binary, arch)
-	print(section_offset)
+	endian = bin_endian(binary)
+	section_offset = e_shoff(binary, arch, endian)
+	sec_size = e_shentsize(binary, arch)
+	
 	#section_header = get_section_header(binary, arch, section_offset)
 	#print(section_header)
 	

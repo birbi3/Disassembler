@@ -1,3 +1,5 @@
+from bin_tools import *
+
 def e_shstrndx(binary, arch):
 	sh_index = list()
 	if arch == "32Bit":
@@ -62,7 +64,7 @@ def e_flag(binary, arch):
 		flag.append(binary[42])
 	return(flag)
 
-def e_shoff(binary, arch):
+def e_shoff(binary, arch, enndian):
 	section_header = list()
 	if arch == "32Bit":
 		section_header.append(binary[32])
@@ -78,16 +80,12 @@ def e_shoff(binary, arch):
 		section_header.append(binary[46])
 		section_header.append(binary[47])
 		section_header.append(binary[48])
-
-	offset = "0x"
-	for _row in section_header:
-		print(type(_row))
-	for _row in section_header:
-		_por = _row.split("x")[1]
-		if _por == "0":
-			continue
-		offset = offset + _por
-	return(offset)
+	if enndian == "Big Endian":
+		print(big_endian(section_header))
+		#TODO PUT MEMORY ADDR IN LITTLE ENDIAN FORMAT
+	if enndian == "Little Endian":
+		print(little_endian(section_header))
+	#return(offset)
 
 def e_phoff(binary, arch):
 	program_header = list()
@@ -201,3 +199,4 @@ def bin_endian(binary):
 		return("Little Endian")
 	if binary[5] == "0x2":
 		return("Big Endian")
+
