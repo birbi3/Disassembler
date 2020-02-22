@@ -1,5 +1,3 @@
-#TODO calculate mem address properly
-
 def get_section_header(binary, arch, offset):
 	
 	offset = int(offset,0)
@@ -8,6 +6,7 @@ def get_section_header(binary, arch, offset):
 		size = 0x28
 	if arch == "64Bit":
 		size = 0x40
+	size = size + offset
 	i = offset
 	section_head = list()
 	while i <= size:

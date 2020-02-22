@@ -16,14 +16,16 @@ def main(argv):
 		binary_string += hex(ord(_row))+" "
 	binary = binary_string.split(" ")
 	
-	print(len(binary))
+
 	arch = bin_bit(binary)
 	endian = bin_endian(binary)
 	section_offset = e_shoff(binary, arch, endian)
 	sec_size = e_shentsize(binary, arch)
+	print(e_entry(binary, arch))
+	print(sec_size)
 	
-	#section_header = get_section_header(binary, arch, section_offset)
-	#print(section_header)
+	section_header = get_section_header(binary, arch, section_offset)
+	print(section_header)
 	
 
 if __name__ == '__main__':

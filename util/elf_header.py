@@ -81,11 +81,10 @@ def e_shoff(binary, arch, enndian):
 		section_header.append(binary[47])
 		section_header.append(binary[48])
 	if enndian == "Big Endian":
-		print(big_endian(section_header))
-		#TODO PUT MEMORY ADDR IN LITTLE ENDIAN FORMAT
+		offset =(big_endian(section_header))
 	if enndian == "Little Endian":
-		print(little_endian(section_header))
-	#return(offset)
+		offset = (little_endian(section_header))
+	return(offset)
 
 def e_phoff(binary, arch):
 	program_header = list()

@@ -1,19 +1,16 @@
 def little_endian(mem):
 	addr = list()
-	lil_addr = list()
+	lil_addr = "0x"
 	i = len(mem) - 1
 	while i >= 0:
-		print (i)
 		addr.append(mem[i])
 		i -=  1
 
-	for _row in add:
-		if _row == "0x0":
-			continue
-		else:
-			lil_addr.append()
+	for _row in addr:
+		_row = _row.split("x")[1]
+		lil_addr = lil_addr + _row
 
-	return addr	
+	return lil_addr	
 
 
 def big_endian(mem):
