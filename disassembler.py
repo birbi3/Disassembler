@@ -5,6 +5,8 @@ sys.path.append("util/")
 from elf_header import *
 from program_header import *
 from section_header import *
+from executable import *
+from bin_tools import *
 
 
 def main(argv):
@@ -19,14 +21,14 @@ def main(argv):
 
 	arch = bin_bit(binary)
 	endian = bin_endian(binary)
+	exec_entry = e_entry(binary, arch)
+	exec_entry = little_endian(exec_entry)
+	exec_entry = int_mem(exec_entry)
 	section_offset = e_shoff(binary, arch, endian)
-	sec_size = e_shentsize(binary, arch)
-	print(e_entry(binary, arch))
-	print(sec_size)
-	
-	section_header = get_section_header(binary, arch, section_offset)
-	print(section_header)
-	
+	section_offset = int_mem(section_offset)
+	executable_data = get_executable(binary, exec_entry, section_offset)
+	print(executable_data)
+
 
 if __name__ == '__main__':
 	main(sys.argv[1])

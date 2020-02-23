@@ -1,5 +1,1 @@
 - Figure out how to calculate the different sections of the executeable data. 
-
-- Write a function to for getting all data between two memory addresses (minimize repeated code)
-
--Write a function that converts the memory address to ints (minimize reuseable code)

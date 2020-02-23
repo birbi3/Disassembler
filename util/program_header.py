@@ -1,3 +1,5 @@
+from bin_tools import *
+
 def get_full_program_header(offset, arch, binary):
 	"""
 	Returns the program header in list format byte
@@ -10,13 +12,7 @@ def get_full_program_header(offset, arch, binary):
 		size == 0x38
 
 	header_end = offset + size
-	
-	program_header = list()
- 	i = int(offset)
- 	while i <= header_end:
- 		program_header.append(binary[i])
- 		i += 1
- 	return program_header
+ 	return mem_space(binary, offset, header_end)
 
 
 def p_type(ph):

@@ -8,7 +8,6 @@ def little_endian(mem):
 	while i >= 0:
 		addr.append(mem[i])
 		i -=  1
-
 	for _row in addr:
 		_row = _row.split("x")[1]
 		lil_addr = lil_addr + _row
@@ -27,3 +26,21 @@ def big_endian(mem):
 	offset = offset.split("0")[1].split("x")[1]
 	addr = "0x" + offset
 	return addr
+
+def mem_space(binary, start, end):
+	"""
+	Grabs all data from binary from start to end .
+	"""
+	mem = list()
+	i = start
+	while i <= end:
+		mem.append(binary[i])
+		i += 1
+	return mem
+
+
+def int_mem(addr):
+	"""
+	Returns an int version of the memory address
+	"""
+	return int(addr, 0)
