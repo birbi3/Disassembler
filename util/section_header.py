@@ -1,5 +1,7 @@
 def get_section_header(binary, arch, offset):
-	
+	"""
+	Returns section header in a list byte by byte
+	"""
 	offset = int(offset,0)
 	print(offset)
 	if arch =="32Bit":

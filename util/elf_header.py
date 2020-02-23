@@ -1,6 +1,10 @@
 from bin_tools import *
 
 def e_shstrndx(binary, arch):
+	"""
+	Returns index of section header table entry
+	with table names
+	"""
 	sh_index = list()
 	if arch == "32Bit":
 		sh_index.append(binary[46])
@@ -11,6 +15,9 @@ def e_shstrndx(binary, arch):
 	return(sh_index)
 
 def e_shnum(binary, arch):
+	"""
+	Returns number of entries in the section header table
+	"""
 	sec_size = list()
 	if arch == "32Bit":
 		sec_size.append(binary[44])
@@ -21,6 +28,9 @@ def e_shnum(binary, arch):
 	return(sec_size)
 
 def e_shentsize(binary, arch):
+	"""
+	Returns the size of the section header
+	"""
 	sh_size = list()
 	if arch == "32Bit":
 		sh_size.append(binary[42])
@@ -31,6 +41,10 @@ def e_shentsize(binary, arch):
 	return(sh_size)	
 
 def e_phentsize(binary, arch):
+	"""
+	returns the size of the program header entry
+	table
+	"""
 	ph_size = list()
 	if arch == "32Bit":
 		ph_size.append(binary[40])
@@ -41,6 +55,9 @@ def e_phentsize(binary, arch):
 	return(ph_size)
 
 def e_ehsize(binary, arch):
+	"""
+	Returns the size of the elf header
+	"""
 	e_header = list()
 	if arch == "32Bit":
 		e_header.append(binary[40])
@@ -65,6 +82,9 @@ def e_flag(binary, arch):
 	return(flag)
 
 def e_shoff(binary, arch, enndian):
+	"""
+	Returns section header offset
+	"""
 	section_header = list()
 	if arch == "32Bit":
 		section_header.append(binary[32])
@@ -87,6 +107,9 @@ def e_shoff(binary, arch, enndian):
 	return(offset)
 
 def e_phoff(binary, arch):
+	"""
+	Returns the program header offet
+	"""
 	program_header = list()
 	if arch == "32Bit":
 		program_header.append(binary[28])
@@ -105,6 +128,9 @@ def e_phoff(binary, arch):
 	return(program_header)
 
 def e_entry(binary, arch):
+	"""
+	Returns the entry point of the binary
+	"""
 	entry = list()
 	if arch == "32Bit":
 		entry.append(binary[24])
@@ -123,6 +149,9 @@ def e_entry(binary, arch):
 	return(entry)	
 
 def e_machine(binary):
+	"""
+	Returns instruction set arch
+	"""
 	values = {
 	"0x0": "None Specificed",
 	"0x2": "SPARC",
@@ -140,6 +169,9 @@ def e_machine(binary):
 	return(values.get(binary[18]))
 
 def e_type(binary):
+	"""
+	Returns object file type
+	"""
 	val = ""
 	values = {
 	"0x0": "NULL",
@@ -159,6 +191,9 @@ def e_type(binary):
 		return(values.get(val))
 
 def os_detect(binary):
+	"""
+	Returns OS binary was compiled on. 
+	"""
 	values ={
 	"0x0": "System V",
 	"0x1": "HP-UX",
@@ -181,6 +216,9 @@ def os_detect(binary):
 	return(values.get(binary[6]))
 
 def bin_detect(binary):
+	"""
+	Verifies the bianry type 
+	"""
 	if binary[0] == "0x7f":
 		if binary[1] == "0x45": 
 			if binary[2] == "0x4c":
@@ -188,12 +226,19 @@ def bin_detect(binary):
 					return("ELF")
 
 def bin_bit(binary):
+	"""
+	Returns the binary format
+
+	"""
 	if binary[4] == "0x1":
 		return("32Bit")
 	if binary[4] == "0x2":
 		return("64Bit")
 
 def bin_endian(binary):
+	"""
+	Returns the binaries endianness
+	"""
 	if binary[5] == "0x1":
 		return("Little Endian")
 	if binary[5] == "0x2":

@@ -1,4 +1,7 @@
 def little_endian(mem):
+	"""
+	Returns memory address formatted in little endian 
+	"""
 	addr = list()
 	lil_addr = "0x"
 	i = len(mem) - 1
@@ -14,6 +17,9 @@ def little_endian(mem):
 
 
 def big_endian(mem):
+	"""
+	Returns memory address formatted in big endian
+	"""
 	offset = "0x"
 	for _row in mem:
 		_por = _row.split("x")[1]

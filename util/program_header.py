@@ -1,4 +1,8 @@
 def get_full_program_header(offset, arch, binary):
+	"""
+	Returns the program header in list format byte
+	by byte
+	"""
 	offset = int(offset[0], 0)
 	if arch == "32Bit":
 		size = 0x20
@@ -16,6 +20,9 @@ def get_full_program_header(offset, arch, binary):
 
 
 def p_type(ph):
+	"""
+	Returns the program header type 
+	"""
 	p_type = list()
 	p_type.append(ph[0])
 	p_type.append(ph[1])
@@ -36,6 +43,9 @@ def p_flags_64(ph, arch):
 		sys.exit(0)
 
 def p_offset(ph, arch):
+	"""
+	Returns offset of the segment in the file image
+	"""
 	offset = list()
 	if arch == "32Bit":
 		offset.append(ph[4])
@@ -54,6 +64,9 @@ def p_offset(ph, arch):
 	return offset
 
 def p_vaddr(ph, arch):
+	"""
+	Returns the virtual address of the segment in memory
+	"""
 	vaddr = list()
 	if arch == "32Bit":
 		vaddr.append(ph[8])
@@ -72,6 +85,9 @@ def p_vaddr(ph, arch):
 	return vaddr
 
 def p_paddr(ph, arch):
+	"""
+	Returns segments physical address
+	"""
 	paddr = list()
 	if arch == "32Bit":
 		paddr.append(ph[12])
@@ -90,6 +106,9 @@ def p_paddr(ph, arch):
 	return paddr
 
 def p_filesz(ph, arch):
+	"""
+	Return sixe of segment in file image
+	"""
 	filesz = list()
 	if arch == "32Bit":
 		filesz.append(ph[16])
@@ -108,6 +127,9 @@ def p_filesz(ph, arch):
 	return filesz
 
 def p_memsz(ph, arch):
+	"""
+	Returns size of segment in memory 
+	"""
 	memsz = list()
 	if arch == "32Bit":
 		memsz.append(ph[20])
