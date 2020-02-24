@@ -10,12 +10,16 @@ def get_executable(binary, entry, section):
 	return mem_space(binary, entry, section)
 
 
-def format_32(excuteable):
+def format(excuteable, arch):
+	if arch == "32Bit":
+		size = 4
+	if arch == "64Bit":
+		size = 8
 	i = 0
 	data = list()
 	format_exec = list()
 	for _byte in excuteable:
-		if i == 4:
+		if i == size:
 			format_exec.append(data)
 			data = list()
 			i = 0
