@@ -27,7 +27,8 @@ def main(argv):
 	section_offset = e_shoff(binary, arch, endian)
 	section_offset = int_mem(section_offset)
 	executable_data = get_executable(binary, exec_entry, section_offset)
-	print(executable_data)
+	for _row in format_32(executable_data):
+		print(_row)
 
 
 if __name__ == '__main__':
