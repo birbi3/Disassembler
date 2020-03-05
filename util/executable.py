@@ -26,17 +26,3 @@ def format(excuteable, arch):
 		data.append(_byte)
 		i +=1
 	return format_exec
-
-
-def format_64(excuteable):
-	i = 0
-	data = list()
-	format_exec = list()
-	for _byte in excuteable:
-		if i == 8:
-			format_exec.append(data)
-			data = list()
-			i = 0
-		data.append(_byte)
-		i +=1
-	return format_exec
