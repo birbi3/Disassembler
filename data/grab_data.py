@@ -2,7 +2,10 @@ import requests
 import json
 from bs4 import BeautifulSoup
 
+#TODO make this work
 def main():
+	op_data = dict()
+	flag = 
 	url = "https://www.felixcloutier.com/x86/"
 	response = requests.get(url).content
 	soup = BeautifulSoup(response, 'html.parser')
@@ -10,14 +13,15 @@ def main():
 	for _row in links:
 		data = requests.get(_row).content
 		instruction_data = BeautifulSoup(data, "html.parser")
+		th = instruction_tables = instruction_data.find_all('th')
 		instruction_tables = instruction_data.find_all('td')
-		print("")
-		print(instruction_tables)
-	"""	
-	test_link = requests.get(links[1]).content
-	test = BeautifulSoup(test_link, 'html.parser')
-	print(test.find_all('td'))
-	"""
+		if not len(th)%6:
+			instruction = list()
+			for _row in instruction_tables:
+
+		if not len(th)%5:
+			print(len(th))
+			print(_row)
 
 def data_obj(op, instruction):
 	data = {
